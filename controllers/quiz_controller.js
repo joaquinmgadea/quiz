@@ -1,4 +1,4 @@
-var models = require('../models/models.js'); 
+var models = require('../models/models.js');
 
 // Autoload - factoriza el código si ruta incluye :quizId
 exports.load = function(req, res, next, quizId) {
@@ -15,12 +15,14 @@ exports.load = function(req, res, next, quizId) {
 // GET /quizes?search=texto_a_buscar
 exports.index = function(req, res) {
   if(req.query.search === undefined) { // no se ha pulsado Enviar
+                                       // (router.get('/quizes', ...)
     models.Quiz.findAll().then( // muestra todo
       function(quizes) {
         res.render('quizes/index', { quizes: quizes });
       }
     ).catch(function(error) { next(error); })
   } else { // se ha pulsado Enviar
+           // (router.param('search', ...)
     search = req.query.search.replace(/\s/g,"%"); // cambia espacios por %
     models.Quiz.findAll({ where: ["pregunta like ?", '%' + search + '%'],
                           order: 'pregunta ASC' }).then(
@@ -43,6 +45,25 @@ exports.answer = function(req, res) {
     resultado = 'Correcto';
   }
   res.render('quizes/answer', { quiz: req.quiz, respuesta: resultado });
+};
+
+// GET /quizes/new
+exports.new = function(req, res) {
+  var quiz = models.Quiz.build( // crea objeto quiz
+    { pregunta: "Pregunta", respuesta: "Respuesta" }
+  );
+
+  res.render('quizes/new', { quiz: quiz});
+};
+
+// POST /quizes/create
+exports.create = function(req, res) {
+  var quiz = models.Quiz.build(req.body.quiz);
+
+  // guarda en DB los campos pregunta y respuesta de quiz
+  quiz.save({ fields: ["pregunta", "respuesta"] }).then(function() {
+    res.redirect('/quizes');
+  }) // redirección HTTP (URL relativo) lista de preguntas
 };
 
 // GET /author
