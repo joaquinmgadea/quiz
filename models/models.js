@@ -1,4 +1,4 @@
-var path = require('path'); 
+var path = require('path');
 
 // Postgres DATABASE_URL = postgres://user:passwd@host:port/database
 // SQLite   DATABASE_URL = sqlite://:@:/
@@ -38,13 +38,21 @@ sequelize.sync().then(function() {
   Quiz.count().then(function(count) {
     if(count === 0) { // la tabla se inicializa sólo si está vacía
       Quiz.bulkCreate(
-        [ { pregunta: 'Capital de Italia',      respuesta: 'Roma' },
-          { pregunta: 'Capital de Portugal',    respuesta: 'Lisboa' },
-          { pregunta: 'Capital de Francia',     respuesta: 'París' },
-          { pregunta: 'Capital de Reino Unido', respuesta: 'Londres' },
-          { pregunta: 'Capital de Argentina',   respuesta: 'Buenos Aires' },
-          { pregunta: 'Capital de Brasil',      respuesta: 'Brasilia' },
-          { pregunta: 'Capital de Puerto Rico', respuesta: 'San Juan' },
+        [ { pregunta: 'Capital de Italia',                             respuesta: 'Roma',        tema: 'Humanidades' },
+          { pregunta: 'Capital de Portugal',                           respuesta: 'Lisboa',      tema: 'Humanidades' },
+          { pregunta: 'Autor de "Don Quijote de la Mancha"',           respuesta: 'Cervantes',   tema: 'Humanidades' },
+          { pregunta: '¿Quién descubrió la ley de la gravedad?"',      respuesta: 'Newton',      tema: 'Ciencia' },
+          { pregunta: '¿Quién formuló la teoría de la relatividad?',   respuesta: 'Einstein',    tema: 'Ciencia' },
+          { pregunta: 'Molécula que contiene la información genética', respuesta: 'ADN',         tema: 'Ciencia' },
+          { pregunta: 'Término coloquial del cubalibre',               respuesta: 'cubata',      tema: 'Ocio' },
+          { pregunta: 'Robot amigo de C-3PO',                          respuesta: 'R2-D2',       tema: 'Ocio' },
+          { pregunta: 'Especie de bar ubicado en la playa',            respuesta: 'chiringuito', tema: 'Ocio' },
+          { pregunta: 'Fabricante del microprocesador 8088',           respuesta: 'Intel',       tema: 'Tecnología' },
+          { pregunta: 'Diodo que emite luz',                           respuesta: 'Led',         tema: 'Tecnología' },
+          { pregunta: 'Núcleo de un sistema operativo',                respuesta: 'kernel',      tema: 'Tecnología' },
+          { pregunta: 'Perico de los ...',                             respuesta: 'palotes',     tema: 'Otro' },
+          { pregunta: 'Fulano, ??? y Zutano',                          respuesta: 'Mengano',     tema: 'Otro' },
+          { pregunta: 'Ciudad de origen de los Beatles',               respuesta: 'Liverpool',   tema: 'Otro' }
         ]
       )
       .then(function() { console.log('Base de datos inicializada') });

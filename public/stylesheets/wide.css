@@ -5,8 +5,8 @@ html, body { margin: 0px; min-height: 100%; } /*** nuevo ***/
 #page-wrap:after { content: "Wide Layout"; }
 
 /*nav      { float: left; width: 15%; height: 200px; }*/
-nav      { float: left; width: 15%; min-height: 200px; height: 100%; }
+nav      { float: left; width: 15%; min-height: 550px; height: 100%; }
 nav span { margin: 0px 100px 0px 0px; }
 /*section  { float: right; width: 80%; height: 200px; }*/
-section  { float: right; width: 80%; min-height: 200px; height: 100%; }
+section  { float: right; width: 80%; min-height: 550px; height: 100%; }
 footer   { clear: both; display: block; }

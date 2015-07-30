@@ -19,7 +19,7 @@
 <div id="page-wrap">
 
   <header class="main" id="h1">
-    <h2>Quiz<span>: el juego de las preguntas  </span></h2>
+    <h2>Quiz<span>: el juego de las preguntas </span></h2>
   </header>
 
   <nav class="main" id="n1" role="navigation">
@@ -30,16 +30,16 @@
 
   <section class="main" id="s1">
     <% if(errors.length) { %>
-      <span id='ErrorMsgs'>
-        Corregir errores:<br/>
-        <% for(var i in errors) { %>
-          <span><%=  errors[i].message %></span><br/>
+    <span id='ErrorMsgs'>
+      Corregir errores:<br/>
+      <% for(var i in errors) { %>
+        <span><%= errors[i].message %></span><br/>
         <% } %>
       </span>
     <% } %>
 
     <div><%- body %></div>
-    
+
   </section>
 
   <footer class="main" id="f1">
@@ -47,7 +47,6 @@
     <br>
     <a href="https://github.com/joaquinmgadea/quiz.git">Página proyecto GitHub</a>
   </footer>
-
 </div>
 </body>
 </html>
