@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-var quizController    = require('../controllers/quiz_controller');
-var commentController = require('../controllers/comment_controller');
-var sessionController = require('../controllers/session_controller');
+var quizController       = require('../controllers/quiz_controller');
+var commentController    = require('../controllers/comment_controller');
+var sessionController    = require('../controllers/session_controller');
+var statisticsController = require('../controllers/statistics_controller');
 
 // Página de entrada (home page)
 router.get('/', function(req, res) {
@@ -38,7 +39,12 @@ router.post('/quizes/:quizId(\\d+)/comments/create', commentController.create);
 router.put('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',
                    sessionController.loginRequired, commentController.publish);
 
+// Definición de ruta de /statistics
+router.get('/quizes/statistics', sessionController.loginRequired,
+                                 statisticsController.calculate,
+                                 statisticsController.index);
+
 // Definición de ruta de /author
-router.get('/author',                                quizController.author);
+router.get('/author', quizController.author);
 
 module.exports = router;
